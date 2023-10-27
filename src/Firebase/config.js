@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, setDoc, deleteDoc, doc, query, where, serverTimestamp, onSnapshot, updateDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getFirestore, doc, setDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD1nq-jehldr_u_cGAIxzwAA5qB2pUqJlU",
@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
 const auth = getAuth(app)
-export { updateDoc, collection, addDoc, db, getDocs, serverTimestamp, deleteDoc, onAuthStateChanged, ref, auth, signOut, signInWithEmailAndPassword, uploadBytes, storage, getDownloadURL, uploadBytesResumable, setDoc, doc, query, where, onSnapshot, }
+const db = getFirestore(app);
+const storage = getStorage();
+export { signInWithEmailAndPassword, createUserWithEmailAndPassword, getAuth, auth, doc, setDoc, db, signOut, getStorage, ref, uploadBytes, storage, collection, query, where, getDocs, onAuthStateChanged, getDownloadURL }

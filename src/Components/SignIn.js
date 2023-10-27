@@ -1,8 +1,34 @@
-import React from "react";
-import '.././App.css'
+import '.././App.css';
 import Navbar from "./Navbar";
+import Swal from 'sweetalert2';
+import { auth, signInWithEmailAndPassword } from '../Firebase/config';
 
 export default function SignIn() {
+    function handleSignIn(event) {
+        event.preventDefault(); 
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful.',
+                }).then(() => {
+                    window.location.href = "./main";
+                });
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                Swal.fire({
+                    icon: 'error',
+                    title: errorMessage,
+                });
+            });
+    }
+
     return (
         <>
             <Navbar />
@@ -19,9 +45,10 @@ export default function SignIn() {
                             <input type="password" name="password" id="password" />
                         </div>
                     </div>
-                    <button>Log In</button>
+                    <button onClick={handleSignIn}>Log In</button>
+                    <a href="signup">Dont Have An Account</a>
                 </div>
             </div>
         </>
-    )
+    );
 }

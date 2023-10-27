@@ -28,6 +28,7 @@ export default function SignUp() {
                         </div>
                     </div>
                     <button>Register Now !</button>
+                    <a href="/">Already Have An Account</a>
                 </div>
             </div>
         </>

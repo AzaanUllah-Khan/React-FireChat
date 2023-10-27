@@ -1,17 +1,19 @@
-import "@fontsource/poppins";
-
-import './App.css'
+import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from './Components/SignIn';
-import SignUp from "./Components/SignUp";
-import Navbar from "./Components/Navbar";
-import Container from "./Components/MessagingContainer";
+import SignUp from './Components/SignUp';
+import Container from './Components/MessagingContainer';
+
 function App() {
   return (
     <>
-      <Navbar />
-      {/* <SignUp /> */}
-      {/* <SignIn /> */}
-      <Container />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/main" element={<Container />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
